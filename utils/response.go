@@ -6,6 +6,12 @@ type Response struct {
 	Data    interface{} `json:"data"`
 }
 
+type ValidationResponseError struct {
+	Field string `json:"field"`
+	Tag   string `json:"tag"`
+	Value string `json:"value"`
+}
+
 func SuccessResponse(payload interface{}) Response {
 	return Response{
 		Message: "Request successfully!",

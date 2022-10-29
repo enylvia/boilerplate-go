@@ -1,20 +1,11 @@
 package routes
 
 import (
-	"net/http"
-
+	"github.com/enylvia/boilerplate-go/domain/controller"
 	"github.com/gorilla/mux"
 )
 
-type API struct{}
-
-func NewAPI() *API {
-	return &API{}
-}
-
-func (a *API) Routes(r *mux.Router) {
-	// Initialize routes
-	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello World"))
-	})
+func RouterPost(r *mux.Router, post controller.Controller) {
+	r.HandleFunc("/post", post.CreatePost).Methods("POST")
+	r.HandleFunc("/post", post.GetPost).Methods("GET")
 }
