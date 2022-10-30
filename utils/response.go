@@ -1,9 +1,19 @@
 package utils
 
+import (
+	"encoding/json"
+	"net/http"
+)
+
 type Response struct {
-	Message string      `json:"string"`
+	Message string      `json:"message"`
 	Status  uint16      `json:"status"`
 	Data    interface{} `json:"data"`
+}
+
+func ReturnJSON(w http.ResponseWriter, response Response) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
 }
 
 type ValidationResponseError struct {

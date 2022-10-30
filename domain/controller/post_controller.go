@@ -41,8 +41,8 @@ func (c *Controller) CreatePost(w http.ResponseWriter, r *http.Request) {
 		utils.BadRequestResponse(err, "Failed to create post")
 		return
 	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(utils.SuccessResponse("Successfully created post"))
+	formatter := utils.SuccessResponse("Post created successfully")
+	utils.ReturnJSON(w, formatter)
 }
 
 func (c *Controller) GetPost(w http.ResponseWriter, r *http.Request) {
@@ -52,6 +52,6 @@ func (c *Controller) GetPost(w http.ResponseWriter, r *http.Request) {
 		utils.BadRequestResponse(err, "Failed to get post")
 		return
 	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(utils.SuccessResponse(posts))
+	formatter := utils.SuccessResponse(posts)
+	utils.ReturnJSON(w, formatter)
 }
